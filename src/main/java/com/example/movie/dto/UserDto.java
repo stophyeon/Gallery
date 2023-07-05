@@ -1,4 +1,4 @@
-package coupang.SaleItem.dto;
+package com.example.movie.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

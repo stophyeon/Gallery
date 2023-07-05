@@ -1,4 +1,4 @@
-package coupang.SaleItem.aop;
+package com.example.movie.aop;
 
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
