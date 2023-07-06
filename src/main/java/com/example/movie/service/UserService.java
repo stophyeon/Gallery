@@ -1,9 +1,12 @@
 package com.example.movie.service;
 
+import com.example.movie.dto.LoginForm;
 import com.example.movie.dto.UserDto;
 import com.example.movie.entity.User;
 import com.example.movie.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -12,9 +15,15 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+    public boolean join(LoginForm loginForm){
+        Optional<User> findByPwUser = userRepository.findByPassword(loginForm.getPassword());
+        Optional<User> findByEmailUser = userRepository.findByEmail(loginForm.getEmail());
+        if (findByEmailUser.equals(findByPwUser)){return true;}
+        else {return false;}
 
+    }
     public void createUser(UserDto userdto) {
-        User user = new User(userdto.getUserName(),userdto.getPassword(),userdto.getEmail(),userdto.getPhoneNumber());
+        User user = new User(userdto.getUserName(),userdto.getPassword(),userdto.getEmail(), userdto.getPhoneNumber());
         DuplicateEmail(user);
         userRepository.save(user);
     }

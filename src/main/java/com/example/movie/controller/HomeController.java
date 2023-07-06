@@ -1,5 +1,6 @@
 package com.example.movie.controller;
 
+import com.example.movie.dto.LoginForm;
 import com.example.movie.dto.UserDto;
 import com.example.movie.service.UserService;
 import jakarta.validation.Valid;
@@ -23,4 +24,12 @@ public class HomeController {
     }
     @GetMapping("/movie/user/new")
     public String newUser(){return "signup";}
+
+    @GetMapping("/movie/user")
+    public String member(){return "login";}
+    @PostMapping("/movie/user")
+    public String joinMember(@Valid LoginForm loginForm){
+        if (userService.join(loginForm)){return "mypage";}
+        else {return "redirect:/";}
+    }
 }

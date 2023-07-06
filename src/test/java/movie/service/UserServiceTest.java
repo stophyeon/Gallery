@@ -1,5 +1,6 @@
 package movie.service;
 
+import com.example.movie.dto.LoginForm;
 import com.example.movie.dto.UserDto;
 import com.example.movie.entity.User;
 import com.example.movie.repository.UserRepository;
@@ -20,6 +21,11 @@ class UserServiceTest {
     private UserRepository userRepository = new UserRepository() {
         @Override
         public Optional<User> findByEmail(String email) {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<User> findByPassword(String password) {
             return Optional.empty();
         }
 
@@ -184,5 +190,12 @@ class UserServiceTest {
 
     @Test
     void duplicateEmail() {
+    }
+    @Test
+    void join(){
+        LoginForm loginForm = new LoginForm("jj6778@naver.com","1234567");
+
+        System.out.println(userRepository.findByPassword(loginForm.getPassword()).isPresent());
+
     }
 }
