@@ -1,6 +1,8 @@
 package com.example.movie.service;
 
 import com.example.movie.dto.LoginForm;
+import com.example.movie.dto.SearchReq;
+import com.example.movie.dto.SearchRes;
 import com.example.movie.dto.UserDto;
 import com.example.movie.entity.User;
 import com.example.movie.repository.UserRepository;
@@ -33,4 +35,5 @@ public class UserService {
                     throw new IllegalStateException("이미 가입된 email입니다");}
         );
     }
+
 }
