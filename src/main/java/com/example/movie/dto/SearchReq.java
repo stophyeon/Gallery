@@ -9,4 +9,7 @@ import lombok.NoArgsConstructor;
 public class SearchReq {
     private String query;
     private final String language="ko-KR";
+    public SearchReq(String query){
+        this.query=query;
+    }
 }

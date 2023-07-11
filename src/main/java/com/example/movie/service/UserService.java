@@ -1,8 +1,7 @@
 package com.example.movie.service;
 
 import com.example.movie.dto.LoginForm;
-import com.example.movie.dto.SearchReq;
-import com.example.movie.dto.SearchRes;
+
 import com.example.movie.dto.UserDto;
 import com.example.movie.entity.User;
 import com.example.movie.repository.UserRepository;
@@ -20,8 +19,7 @@ public class UserService {
     public boolean join(LoginForm loginForm){
         Optional<User> findByPwUser = userRepository.findByPassword(loginForm.getPassword());
         Optional<User> findByEmailUser = userRepository.findByEmail(loginForm.getEmail());
-        if (findByEmailUser.equals(findByPwUser)){return true;}
-        else {return false;}
+        return findByEmailUser.equals(findByPwUser);
 
     }
     public void createUser(UserDto userdto) {

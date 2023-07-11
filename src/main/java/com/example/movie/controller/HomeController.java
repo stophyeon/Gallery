@@ -1,6 +1,7 @@
 package com.example.movie.controller;
 
 import com.example.movie.dto.LoginForm;
+import com.example.movie.dto.SearchReq;
 import com.example.movie.dto.UserDto;
 import com.example.movie.service.UserService;
 import jakarta.validation.Valid;
@@ -32,4 +33,5 @@ public class HomeController {
         if (userService.join(loginForm)){return "mypage";}
         else {return "redirect:/";}
     }
+
 }
