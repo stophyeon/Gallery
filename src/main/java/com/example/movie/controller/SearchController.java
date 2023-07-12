@@ -23,5 +23,9 @@ public class SearchController {
         model.addAttribute("movies",movies);
         return "movies";
     }
+    @PostMapping("/movie/like")
+    public String MyMovies(SearchRes searchRes){
 
+        return "mypage";
+    }
 }

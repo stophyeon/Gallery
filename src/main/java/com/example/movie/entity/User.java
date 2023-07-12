@@ -1,13 +1,11 @@
 package com.example.movie.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,12 +14,13 @@ import lombok.RequiredArgsConstructor;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String userName;
-    String password;
-    String email;
-    String phoneNumber;
-
+    private Long id;
+    private String userName;
+    private String password;
+    private String email;
+    private String phoneNumber;
+    @OneToMany(mappedBy = "user")
+    private List<MyMovies> movies = new ArrayList<>();
     public User(String userName, String password, String email, String phoneNumber){
         this.userName=userName;
         this.email=email;

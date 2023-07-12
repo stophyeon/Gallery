@@ -33,5 +33,6 @@ public class HomeController {
         if (userService.join(loginForm)){return "mypage";}
         else {return "redirect:/";}
     }
-
+    @GetMapping("/movie/search")
+    public String searching(){return "mypage";}
 }
