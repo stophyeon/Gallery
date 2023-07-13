@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 
 @Getter
-@Table(name = "movies_table")
+@Table(name = "movie_table")
 public class MyMovies {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,13 +20,11 @@ public class MyMovies {
     private User user;
     private String poster_path;
     private String title;
-    private String overview;
-    private Double vote_average;
 
-    public MyMovies(String poster_path, String title, String overview, Double vote_average) {
+
+    public MyMovies(String poster_path, String title,User user) {
         this.poster_path = poster_path;
         this.title = title;
-        this.overview = overview;
-        this.vote_average = vote_average;
+        this.user=user;
     }
 }

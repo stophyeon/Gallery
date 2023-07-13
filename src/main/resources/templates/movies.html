@@ -8,9 +8,17 @@
 <body>
 
 <a href="/movie/search">검색창으로</a>
+<a href="/">로그아웃</a>
+<h2>관심 영화</h2>
+<form action="/movie/user/like" method="post">
+    <input type="text" name="title" placeholder="저장할 영화이름">
+    <input type="text" name="email" placeholder="본인 이메일">
+    <input type="submit">
+</form>
+<p></p>
 <div class="container">
     <div>
-        <table >
+        <table border="1">
             <thead>
             <tr>
                 <th>포스터<th>
@@ -25,6 +33,7 @@
                 <td th:text="${movies.title}"></td>
                 <td th:text="${movies.overview}"></td>
                 <td th:text="${movies.vote_average}"></td>
+            </tr>
             </tbody>
         </table>
     </div>

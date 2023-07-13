@@ -2,6 +2,7 @@ package movie.service;
 
 import com.example.movie.dto.LoginForm;
 import com.example.movie.dto.UserDto;
+import com.example.movie.entity.MyMovies;
 import com.example.movie.entity.User;
 import com.example.movie.repository.UserRepository;
 import com.example.movie.service.UserService;
@@ -196,6 +197,15 @@ class UserServiceTest {
         LoginForm loginForm = new LoginForm("jj6778@naver.com","1234567");
 
         System.out.println(userRepository.findByPassword(loginForm.getPassword()).isPresent());
+
+    }
+    @Test
+    public void add(){
+        User user = new User("재학","12345678","jj6778@naver.com","010-1234-5678");
+        MyMovies myMovies = new MyMovies("포스터","아이언맨",user);
+        userService.addMyMovies(myMovies,user);
+        System.out.println(user.getMovies().get(0).getTitle());
+
 
     }
 }

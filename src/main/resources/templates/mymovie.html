@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>내 영화목록</title>
+</head>
+<body>
+<a href="/movie/search">검색창으로</a>
+<a href="/">로그아웃</a>
+<a href="/movie/user/like">내영화</a>
+<div class="container">
+  <div>
+    <table >
+      <thead>
+      <tr>
+        <th>포스터<th>
+        <th>제목<th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="movies:${member.movies}">
+        <td ><img th:src="${movies.poster_path}" alt="NO IMAGE"/></td>
+        <td th:text="${movies.title}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

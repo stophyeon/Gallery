@@ -45,22 +45,6 @@ public class MovieSearchAPI {
             movies.add(new SearchRes(title,overview,poster_path,vote_average));
         }
         return movies;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 

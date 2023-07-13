@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <title>search movie</title>
 </head>
 <body>
+<a href="/">로그아웃</a>
     <h1>영화 검색</h1>
     <form action="/movie/search" method="post">
         <input type="text" name="query" placeholder="영화 제목을 입력하세요">
         <input type="submit" >
     </form>
+
 
 </body>
 </html>

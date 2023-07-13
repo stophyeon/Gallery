@@ -21,6 +21,9 @@ public class User {
     private String phoneNumber;
     @OneToMany(mappedBy = "user")
     private List<MyMovies> movies = new ArrayList<>();
+    public void makeMyMovies(MyMovies myMovies){
+        this.movies.add(myMovies);
+    }
     public User(String userName, String password, String email, String phoneNumber){
         this.userName=userName;
         this.email=email;

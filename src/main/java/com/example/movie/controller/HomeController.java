@@ -3,9 +3,12 @@ package com.example.movie.controller;
 import com.example.movie.dto.LoginForm;
 import com.example.movie.dto.SearchReq;
 import com.example.movie.dto.UserDto;
+import com.example.movie.entity.User;
 import com.example.movie.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -30,7 +33,10 @@ public class HomeController {
     public String member(){return "login";}
     @PostMapping("/movie/user")
     public String joinMember(@Valid LoginForm loginForm){
-        if (userService.join(loginForm)){return "mypage";}
+        if (userService.join(loginForm)!=null){
+            User user =  userService.join(loginForm);
+
+            return "mypage";}
         else {return "redirect:/";}
     }
     @GetMapping("/movie/search")

@@ -3,6 +3,7 @@ package com.example.movie.service;
 import com.example.movie.dto.LoginForm;
 
 import com.example.movie.dto.UserDto;
+import com.example.movie.entity.MyMovies;
 import com.example.movie.entity.User;
 import com.example.movie.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,13 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    public boolean join(LoginForm loginForm){
-        Optional<User> findByPwUser = userRepository.findByPassword(loginForm.getPassword());
-        Optional<User> findByEmailUser = userRepository.findByEmail(loginForm.getEmail());
-        return findByEmailUser.equals(findByPwUser);
+    public User join(LoginForm loginForm){
+        User findByPwUser = userRepository.findByPassword(loginForm.getPassword()).orElseThrow(NullPointerException::new);
+        User findByEmailUser = userRepository.findByEmail(loginForm.getEmail()).orElseThrow(NullPointerException::new);
+        if (findByEmailUser.equals(findByPwUser)){
+            return findByEmailUser;
+        }
+        else return null;
 
     }
     public void createUser(UserDto userdto) {
@@ -32,6 +36,14 @@ public class UserService {
                 m-> {
                     throw new IllegalStateException("이미 가입된 email입니다");}
         );
+    }
+    public User findOne(String email){
+        User user = userRepository.findByEmail(email).orElseThrow();
+        return user;
+    }
+    public void addMyMovies(MyMovies myMovies,User user){
+
+        user.makeMyMovies(myMovies);
     }
 
 }
