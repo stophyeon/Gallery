@@ -2,6 +2,7 @@ package com.example.movie.controller;
 
 import com.example.movie.dto.SearchReq;
 import com.example.movie.dto.SearchRes;
+import com.example.movie.entity.MyMovies;
 import com.example.movie.entity.User;
 import com.example.movie.service.MovieSearchAPI;
 import com.example.movie.service.MovieService;
@@ -36,8 +37,9 @@ public class MovieController {
     public String addMyMovies(String title,String email,Model model) throws IOException, ParseException {
         SearchReq searchReq = new SearchReq(title);
         User user = userService.findOne(email);
-        SearchRes movie=movieSearchAPI.searchMovie(searchReq).get(0);
-        movieService.addMovies(movie,user);
+        SearchRes movie = movieSearchAPI.searchMovie(searchReq).get(0);
+        MyMovies myMovies = new MyMovies(movie.getPoster_path(),movie.getTitle(),user);
+        user.makeMyMovies(myMovies);
         model.addAttribute("member",user);
         return "mymovie";
     }
